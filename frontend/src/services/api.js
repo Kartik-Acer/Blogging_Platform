@@ -22,3 +22,5 @@ export const login = (data) => API.post("/login", data)
 export const getProfile = () => API.get("/auth/me")
 export const getblog = (params,data) => API.get(`/blogs?${params}`,data)
 export const createblog = (data) => API.post("/blogs", data)
+export const getUsersblog = (data) => API.get("/users/blogs", data)
+

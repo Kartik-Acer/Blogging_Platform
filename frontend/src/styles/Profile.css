@@ -1,0 +1,260 @@
+/* Profile page styles */
+.profile-container {
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.profile-content {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.profile-header {
+  margin-bottom: 2rem;
+}
+
+.profile-info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.profile-details {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.profile-avatar {
+  width: 6rem;
+  height: 6rem;
+  background-color: #dbeafe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-avatar-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #2563eb;
+}
+
+.profile-user-info {
+  /* User info styles */
+}
+
+.profile-name {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.profile-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.profile-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.profile-bio {
+  color: #374151;
+  max-width: 42rem;
+}
+
+.profile-edit-btn {
+  /* Edit button styles */
+}
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.profile-stat-card {
+  text-align: center;
+}
+
+.profile-stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.profile-stat-number.blue {
+  color: #2563eb;
+}
+
+.profile-stat-number.green {
+  color: #16a34a;
+}
+
+.profile-stat-number.purple {
+  color: #9333ea;
+}
+
+.profile-stat-label {
+  color: #6b7280;
+}
+
+.profile-tabs {
+  /* Tabs styles */
+}
+
+.profile-tabs-header {
+  display: flex;
+  gap: 2rem;
+}
+
+.profile-tab-btn {
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid transparent;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.profile-tab-btn.active {
+  border-bottom-color: #2563eb;
+  color: #2563eb;
+}
+
+.profile-tab-btn:not(.active) {
+  color: #6b7280;
+}
+
+.profile-tab-btn:not(.active):hover {
+  color: #111827;
+}
+
+.profile-tab-content {
+  padding: 1.5rem;
+}
+
+.profile-blogs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile-blogs-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.profile-blogs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile-blog-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+.profile-blog-item:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.profile-blog-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.profile-blog-info {
+  flex: 1;
+}
+
+.profile-blog-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-blog-date {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.profile-blog-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.profile-blog-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+
+.profile-blog-title a:hover {
+  color: #2563eb;
+}
+
+.profile-blog-excerpt {
+  color: #6b7280;
+  margin-bottom: 0.75rem;
+}
+
+.profile-blog-stats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.profile-blog-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.profile-blog-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+.profile-empty-state {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.profile-empty-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.profile-empty-text {
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .profile-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

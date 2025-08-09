@@ -17,9 +17,10 @@ const Navbar = () => {
     if (token) {
       setIsAuthenticated(true)
       // Try to get user data from localStorage or API
-      const userData = localStorage.getItem("userData")
-      if (userData) {
-        setUser(JSON.parse(userData))
+      const userName = localStorage.getItem("name")
+      console.log("Name" ,userName)
+      if (userName) {
+        setUser(userName)
       }
     }
   }, [])
@@ -71,7 +72,7 @@ const Navbar = () => {
               <div className="dropdown">
                 <button className="flex items-center">
                   <User style={{ width: "1rem", height: "1rem", marginRight: "0.5rem" }} />
-                  <span>{user?.firstName || "User"}</span>
+                  <span>{user || "User"}</span>
                 </button>
 
                 <div className="dropdown-menu">
