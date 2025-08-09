@@ -1,0 +1,73 @@
+/* Edit Blog page styles */
+.edit-blog-container {
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.edit-blog-content {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.edit-blog-header {
+  margin-bottom: 2rem;
+}
+
+.edit-blog-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+.edit-blog-subtitle {
+  margin-top: 0.5rem;
+  color: #6b7280;
+}
+
+.edit-blog-error {
+  margin-bottom: 1.5rem;
+}
+
+.edit-blog-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-blog-spinner {
+  width: 4rem;
+  height: 4rem;
+  display: inline-block;
+  border: 4px solid #f3f4f6;
+  border-radius: 50%;
+  border-top-color: #2563eb;
+  animation: spin 1s ease-in-out infinite;
+}
+
+.edit-blog-not-found {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-blog-not-found-content {
+  text-align: center;
+}
+
+.edit-blog-not-found-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.edit-blog-not-found-text {
+  color: #6b7280;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

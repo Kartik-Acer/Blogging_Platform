@@ -6,6 +6,9 @@ import Home from "./component/Home"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Profile from "./pages/Profile"
+import CreateBlog from "./pages/CreateBlog"
+import EditBlog from "./pages/EditBlog"
+import BlogDetail from "./pages/BlogDetail"
 import './App.css';
 
 
@@ -30,6 +33,9 @@ function App() {
               <Route path="/register" element={<Register/>}/>
               <Route path="/login" element={<Login/>}/>
               <Route path="/profile" element={<Profile/>}/>
+              <Route path="/blog/:id" element={<BlogDetail />} />
+              <Route path="/create-blog" element={<CreateBlog />} />
+              <Route path="/edit-blog/:id" element={<EditBlog />} />
             </Routes>
           </main>
           <Footer />

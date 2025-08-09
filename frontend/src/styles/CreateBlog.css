@@ -1,0 +1,29 @@
+/* Create Blog page styles */
+.create-blog-container {
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.create-blog-content {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.create-blog-header {
+  margin-bottom: 2rem;
+}
+
+.create-blog-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+.create-blog-subtitle {
+  margin-top: 0.5rem;
+  color: #6b7280;
+}
+
+.create-blog-error {
+  margin-bottom: 1.5rem;
+}

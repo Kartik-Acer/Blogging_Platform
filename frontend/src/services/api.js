@@ -20,7 +20,14 @@ API.interceptors.request.use(
 export const register = (data) => API.post("/register", data)
 export const login = (data) => API.post("/login", data)
 export const getProfile = () => API.get("/auth/me")
+
 export const getblog = (params,data) => API.get(`/blogs?${params}`,data)
-export const createblog = (data) => API.post("/blogs", data)
+
 export const getUsersblog = (data) => API.get("/users/blogs", data)
+
+export const createblog = (data) => API.post("/blogs", data)
+
+export const getBlogDetail = (id,data) => API.get(`/blogs/${id}`, data)
+
+export const updateBlog = (id,data) => API.put(`/blogs/${id}`, data)
 

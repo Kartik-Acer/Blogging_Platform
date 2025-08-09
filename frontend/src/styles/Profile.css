@@ -42,9 +42,9 @@
   color: #2563eb;
 }
 
-.profile-user-info {
-  /* User info styles */
-}
+/* .profile-user-info {
+  /* User info styles 
+} */
 
 .profile-name {
   font-size: 1.875rem;
@@ -71,9 +71,9 @@
   max-width: 42rem;
 }
 
-.profile-edit-btn {
-  /* Edit button styles */
-}
+/* .profile-edit-btn {
+  /* Edit button styles 
+} */
 
 .profile-stats {
   display: grid;
@@ -108,9 +108,9 @@
   color: #6b7280;
 }
 
-.profile-tabs {
-  /* Tabs styles */
-}
+/* .profile-tabs {
+  /* Tabs styles 
+} */
 
 .profile-tabs-header {
   display: flex;
