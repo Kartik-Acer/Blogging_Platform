@@ -65,7 +65,7 @@ const EditBlog = () => {
         formData.append("featuredImage", featuredImage)
       }
 
-      const response = await updateBlog( formData, {
+      const response = await updateBlog(id, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

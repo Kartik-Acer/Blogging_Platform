@@ -18,7 +18,9 @@ API.interceptors.request.use(
 
 // API functions
 export const register = (data) => API.post("/register", data)
+
 export const login = (data) => API.post("/login", data)
+
 export const getProfile = () => API.get("/auth/me")
 
 export const getblog = (params,data) => API.get(`/blogs?${params}`,data)
@@ -29,5 +31,18 @@ export const createblog = (data) => API.post("/blogs", data)
 
 export const getBlogDetail = (id,data) => API.get(`/blogs/${id}`, data)
 
-export const updateBlog = (id,data) => API.put(`/blogs/${id}`, data)
+export const updateBlog = (id, data) => API.put(`/blogs/${id}`, data)
+
+export const getAdminblog = (data) => API.get("/admin/blogs", data)
+
+export const getAdminusers = (data) => API.get("/admin/users", data)
+
+export const likeblog = (id, data) => API.post(`/blogs/${id}/like`, data)
+
+export const commentblog = (id, data) => API.post(`/blogs/${id}/comments`, data)
+
+export const deleteblog = (id) => API.delete(`/blogs/${id}`)
+
+export const deleteblogByAmin  = (blogId) => API.delete(`/admin/blogs/${blogId}`)
+
 

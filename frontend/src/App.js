@@ -9,6 +9,7 @@ import Profile from "./pages/Profile"
 import CreateBlog from "./pages/CreateBlog"
 import EditBlog from "./pages/EditBlog"
 import BlogDetail from "./pages/BlogDetail"
+import AdminDashboard from "./pages/AdminDashboard"
 import './App.css';
 
 
@@ -36,6 +37,7 @@ function App() {
               <Route path="/blog/:id" element={<BlogDetail />} />
               <Route path="/create-blog" element={<CreateBlog />} />
               <Route path="/edit-blog/:id" element={<EditBlog />} />
+              <Route path="/adminDashboard" element={<AdminDashboard/>}/>
             </Routes>
           </main>
           <Footer />

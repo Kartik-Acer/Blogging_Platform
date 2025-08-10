@@ -41,12 +41,12 @@ const Login = () => {
       localStorage.setItem("role", response.data.role)
       localStorage.setItem("name", response.data.name)
 
-        navigate(
-        response.data.role === "admin" ? "/adminDashboard" : "/"
-      );
+       
       
       setTimeout(() => {
-        navigate("/")
+         navigate(
+        response.data.role === "admin" ? "/adminDashboard" : "/"
+      );
         // Trigger a page refresh to update navbar state
         window.location.reload()
       }, 1500)

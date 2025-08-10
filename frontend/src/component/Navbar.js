@@ -9,16 +9,21 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
+  const [isAmin , setIsAdmin] = useState(false)
   const navigate = useNavigate()
 
   // Check authentication status on component mount
   useEffect(() => {
     const token = localStorage.getItem("token")
+    const role = localStorage.getItem("role")
     if (token) {
       setIsAuthenticated(true)
       // Try to get user data from localStorage or API
+      if(role === "admin"){
+         setIsAdmin(true)
+      }
       const userName = localStorage.getItem("name")
-      console.log("Name" ,userName)
+     // console.log("Name" ,userName)
       if (userName) {
         setUser(userName)
       }
@@ -27,10 +32,12 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token")
-    localStorage.removeItem("userData")
+    localStorage.removeItem("name")
+    localStorage.removeItem("role")
     setIsAuthenticated(false)
     setUser(null)
     setIsMenuOpen(false)
+    setIsAdmin(false)
     navigate("/")
   }
 
@@ -57,15 +64,18 @@ const Navbar = () => {
               <span>Home</span>
             </Link>
 
-            <Link to="/create-blog" className="flex items-center">
+            <Link to={isAuthenticated ? "/create-blog" : "/login"} className="flex items-center">
               <FileText style={{ width: "1rem", height: "1rem", marginRight: "0.5rem" }} />
               <span>Write Blog</span>
             </Link>
-
-            <Link to="/admin" className="flex items-center">
+           
+            { isAmin ? (
+            <Link to="/adminDashboard" className="flex items-center">
               <BarChart3 style={{ width: "1rem", height: "1rem", marginRight: "0.5rem" }} />
-              <span>Analytics</span>
-            </Link>
+              <span>Dashboard</span>
+            </Link>) : (
+              <></>
+            )}
 
             {/* Authentication Section */}
             {isAuthenticated ? (

@@ -4,8 +4,7 @@ import "../styles/BlogDetail.css"
 import { useState } from "react"
 import { useParams, Link } from "react-router-dom"
 import { useQuery, useMutation, useQueryClient } from "react-query"
-import axios from "axios"
-import { getBlogDetail } from "../services/api"
+import { getBlogDetail, likeblog, commentblog, deleteblog } from "../services/api"
 import { Calendar, User, Heart, MessageCircle, Eye, Edit, Trash2, Send } from "lucide-react"
 
 const BlogDetail = () => {
@@ -14,7 +13,10 @@ const BlogDetail = () => {
   const [comment, setComment] = useState("")
   const [isLiked, setIsLiked] = useState(false)
   const [likesCount, setLikesCount] = useState(0)
+  const [isDisplay, setIsDisplay] = useState(false)
 
+  const token = localStorage.getItem("token");
+  const userName = localStorage.getItem("name")
   const {
     data: blog,
     isLoading,
@@ -24,6 +26,9 @@ const BlogDetail = () => {
     async () => {
       //const response = await axios.get(`/api/blogs/${id}`)
       const response = await getBlogDetail(id);
+      if(response.data.author.username === userName){
+         setIsDisplay(true)
+      }
       const blogData = response.data
       setLikesCount(blogData.likes.length)
       return blogData
@@ -35,7 +40,7 @@ const BlogDetail = () => {
 
   const likeMutation = useMutation(
     async () => {
-      const response = await axios.post(`/api/blogs/${id}/like`)
+      const response = await likeblog(id)
       return response.data
     },
     {
@@ -53,7 +58,7 @@ const BlogDetail = () => {
 
   const commentMutation = useMutation(
     async (content) => {
-      const response = await axios.post(`/api/blogs/${id}/comments`, { content })
+      const response = await commentblog(id, { content })
       return response.data
     },
     {
@@ -66,7 +71,7 @@ const BlogDetail = () => {
 
   const deleteMutation = useMutation(
     async () => {
-      await axios.delete(`/api/blogs/${id}`)
+      await deleteblog(id)
     },
     {
       onSuccess: () => {
@@ -81,7 +86,10 @@ const BlogDetail = () => {
 
   const handleComment = (e) => {
     e.preventDefault()
-    if (comment.trim()) {
+    if(token == null){
+      window.confirm("please log in to comment")
+    }
+     else if (comment.trim()) {
       commentMutation.mutate(comment)
     }
   }
@@ -135,7 +143,8 @@ const BlogDetail = () => {
               style={{ height: "20rem" }}
             />
           )}
-
+          
+          {isDisplay ? (
           <div className="flex items-center justify-between mb-4">
             <span className="badge badge-primary">{blog.category}</span>
             <div className="flex space-x-2">
@@ -148,7 +157,9 @@ const BlogDetail = () => {
                 Delete
               </button>
             </div>
-          </div>
+          </div> ) : (
+            <></>
+          )}
 
           <h1 className="text-4xl font-bold mb-4">{blog.title}</h1>
 
