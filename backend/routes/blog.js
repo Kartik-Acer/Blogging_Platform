@@ -48,7 +48,7 @@ router.get("/blogs", async (req, res) => {
       .limit(limit)
 
     const total = await Blog.countDocuments(query)
-    console.log(blogs)
+    
     res.json({
       blogs,
       pagination: {

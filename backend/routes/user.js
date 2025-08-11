@@ -29,8 +29,7 @@ router.get("/profile", auth, async (req, res) => {
 })
 
 // Update user profile
-router.put(
-  "/profile",
+router.put("/user/profile",
   auth,
   upload.single("avatar"),
   [
@@ -39,6 +38,7 @@ router.put(
     body("bio").optional().trim().escape(),
   ],
   async (req, res) => {
+    console.log(req.file)
     try {
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
@@ -59,6 +59,7 @@ router.put(
               })
               .end(req.file.buffer)
           })
+
           avatar = result.secure_url
         } catch (uploadError) {
           console.error("Avatar upload error:", uploadError)
@@ -101,7 +102,7 @@ router.get("/users/blogs", auth, async (req, res) => {
       .limit(limit)
 
     const total = await Blog.countDocuments({ author: req.user._id })
-    console.log(blogs)
+    
     res.json({
       blogs,
       pagination: {
