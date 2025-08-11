@@ -1,9 +1,10 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://blogging-platform-backend-lqai.onrender.com/api",
 });
-
+//https://blogging-platform-backend-lqai.onrender.com
+//http://localhost:5000/api
 //Interceptor to add token to every request
 API.interceptors.request.use(
   (config) => {
