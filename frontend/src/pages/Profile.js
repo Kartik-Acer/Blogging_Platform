@@ -65,9 +65,18 @@ const Profile = () => {
             <div className="flex items-start justify-between">
               <div className="flex items-start space-x-6">
                 <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center">
-                  <User style={{ width: "3rem", height: "3rem" }} className="text-blue-600" />
+                  {user.avatar && (
+                    <img
+                      src={user.avatar || "/placeholder.svg"}
+                      alt="Profile"
+                      className="text-blue-600"
+                      style={{ width: "7rem", height: "8rem", borderRadius: "20px" }}
+                    />
+                  )}
+                  {/* {<User style={{ width: "5rem", height: "3rem" }} className="text-blue-600" />} */}
                 </div>
-                <div>
+                
+                <div style={{paddingLeft:"10px"}}>
                   <h1 className="text-3xl font-bold mb-2">
                     {user.firstName} {user.lastName}
                   </h1>
@@ -85,8 +94,10 @@ const Profile = () => {
                 </div>
               </div>
               <button className="btn btn-secondary">
-                <Edit style={{ width: "1rem", height: "1rem", marginRight: "0.5rem" }} />
-                Edit Profile
+                <Link to="/EditProfile" className="btn btn-secondary">
+                 <Edit style={{ width: "1rem", height: "1rem", marginRight: "0.5rem" }} />
+                  Edit Profile
+                </Link>
               </button>
             </div>
           </div>
@@ -124,24 +135,24 @@ const Profile = () => {
             <div className="flex space-x-8">
               <button
                 onClick={() => setActiveTab("blogs")}
-                className={`pb-2 border-b-2 font-medium ${
+                className={`pb-3 font-medium ${
                   activeTab === "blogs"
-                    ? "border-blue-600 text-blue-600"
+                    ? "text-white bg-blue-600 rounded-lg active border-transparent"
                     : "border-transparent text-gray-600 hover:text-gray-900"
                 }`}
               >
                 My Blogs
               </button>
-              <button
+              {/* <button
                 onClick={() => setActiveTab("drafts")}
                 className={`pb-2 border-b-2 font-medium ${
                   activeTab === "drafts"
-                    ? "border-blue-600 text-blue-600"
+                    ? "text-white bg-blue-600 rounded-lg active border-transparent"
                     : "border-transparent text-gray-600 hover:text-gray-900"
                 }`}
               >
                 Drafts
-              </button>
+              </button> */}
             </div>
           </div>
 

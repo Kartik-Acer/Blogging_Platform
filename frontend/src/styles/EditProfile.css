@@ -1,0 +1,78 @@
+/* Edit Profile page styles */
+.edit-profile-container {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.edit-profile-header {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.edit-profile-field label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.edit-profile-input,
+.edit-profile-textarea {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.edit-profile-input:focus,
+.edit-profile-textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25);
+}
+
+.edit-profile-textarea {
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.edit-profile-avatar-preview {
+  width: 7rem;
+  height: 8rem;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-bottom: 0.75rem;
+  border: 2px solid #e5e7eb;
+}
+
+.edit-profile-submit {
+  width: 100%;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.edit-profile-submit:hover {
+  background-color: #1e4ed8;
+}
+
+.edit-profile-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

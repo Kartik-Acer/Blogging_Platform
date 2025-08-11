@@ -112,7 +112,7 @@ const Navbar = () => {
                 <Link to="/login" className="text-gray-700 hover:text-blue-600 transition-colors">
                   Login
                 </Link>
-                <Link to="/register" className="btn btn-primary">
+                <Link to="/register" className="btn btn-SignUp">
                   Sign Up
                 </Link>
               </div>
@@ -152,15 +152,18 @@ const Navbar = () => {
                 <FileText className="h-4 w-4" />
                 <span>Write Blog</span>
               </Link>
-
+              
+              { isAmin ? (
               <Link
-                to="/admin"
+                to="/adminDashboard"
                 className="flex items-center space-x-2 px-3 py-2 text-gray-700 hover:text-blue-600"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <BarChart3 className="h-4 w-4" />
                 <span>Analytics</span>
-              </Link>
+              </Link> ) : (
+                 <></>
+              )}
 
               {/* Mobile Authentication Section */}
               {isAuthenticated ? (

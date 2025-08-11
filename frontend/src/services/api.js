@@ -45,4 +45,6 @@ export const deleteblog = (id) => API.delete(`/blogs/${id}`)
 
 export const deleteblogByAmin  = (blogId) => API.delete(`/admin/blogs/${blogId}`)
 
+export const updateProfile = (data) => API.put("/user/profile", data);
+
 
