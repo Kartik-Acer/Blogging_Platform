@@ -97,7 +97,7 @@ const Home = () => {
                     <option value="Food">Food</option>
                     <option value="Lifestyle">Lifestyle</option>
                     <option value="Business">Business</option>
-                    <option value="Business">Education</option>
+                    <option value="Education">Education</option>
                   </select>
                 </div>
 
