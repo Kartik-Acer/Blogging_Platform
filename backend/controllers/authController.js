@@ -4,10 +4,10 @@ const jwt = require("jsonwebtoken"); // For generating JWT tokens
 
 exports.register = async (req, res) => {
   const {firstName, lastName, username, email, password} = req.body; // Destructure request body
-  //const hashedPassword = await bcrypt.hash(password, 10); // Encrypt password
+  const hashedPassword = await bcrypt.hash(password, 10); // Encrypt password
 
   try {
-    const user = new User({firstName,lastName, username, email, password}); // create user obj
+    const user = new User({firstName,lastName, username, email, password : hashedPassword}); // create user obj
     await user.save(); // save user to DB
     res.status(201).json({ message: "User registered" }); //Respond success
   } catch (err) {
@@ -21,12 +21,19 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   const { email, password } = req.body; // Destructure request body
+
   const user = await User.findOne({ email }); // Find user by email
 
   if (!user) return res.status(400).json({ error: "invalid credentials" });
 
-  //const isMatch = await bcrypt.compare(password, user.password); //Compare password
-  //if (!isMatch) return res.status(400).json({ error: "Invalid Credentials" });
+  let isMatch = false;
+
+  if(user.password.length >= 20)
+     isMatch = await bcrypt.compare(password, user.password); //Compare password
+  else
+     isMatch = password === user.password ? true : false;
+  
+  if (!isMatch) return res.status(400).json({ error: "Invalid Credentials" });
 
   if (!user.isActive) return res.status(400).json({ error: "Access denied! Please contact your admin" });
 
