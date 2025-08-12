@@ -3,7 +3,7 @@
 import "../styles/AdminDashboard.css"
 import { useState } from "react"
 import { useQuery, useMutation, useQueryClient } from "react-query"
-import { getAdminblog, getAdminusers, deleteblogByAmin } from "../services/api"
+import { getAdminblog, getAdminusers, deleteblogByAmin, toggleUsers } from "../services/api"
 import { Users, FileText, Trash2, Eye, Calendar, BarChart3, TrendingUp } from "lucide-react"
 import Swal from "sweetalert2";
 
@@ -66,6 +66,17 @@ const AdminDashboard = () => {
       }
     });
   };
+   
+   const toggleUserStatus = async (userId, userIsActive) => {
+    try {
+      await toggleUsers(userId);
+      queryClient.invalidateQueries("adminStats");
+      Swal.fire(userIsActive ? "User Deactivated" : "User Activated");
+    } catch (error) {
+      console.log(error);
+      Swal.fire("Failed to update user status");
+    }
+  };
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -88,35 +99,49 @@ const AdminDashboard = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="mb-8">
           <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-          <p className="mt-2 text-gray-600">Monitor your blog platform performance</p>
+          <p className="mt-2 text-gray-600">
+            Monitor your blog platform performance
+          </p>
         </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="card">
             <div className="card-body text-center">
-              <FileText style={{ width: "2rem", height: "2rem" }} className="text-blue-600 mx-auto mb-2" />
+              <FileText
+                style={{ width: "2rem", height: "2rem" }}
+                className="text-blue-600 mx-auto mb-2"
+              />
               <h3 className="text-2xl font-bold">{stats.totalBlogs}</h3>
               <p className="text-gray-600">Total Blogs</p>
             </div>
           </div>
           <div className="card">
             <div className="card-body text-center">
-              <Users style={{ width: "2rem", height: "2rem" }} className="text-green-600 mx-auto mb-2" />
+              <Users
+                style={{ width: "2rem", height: "2rem" }}
+                className="text-green-600 mx-auto mb-2"
+              />
               <h3 className="text-2xl font-bold">{stats.totalUsers}</h3>
               <p className="text-gray-600">Total Users</p>
             </div>
           </div>
           <div className="card">
             <div className="card-body text-center">
-              <Eye style={{ width: "2rem", height: "2rem" }} className="text-purple-600 mx-auto mb-2" />
+              <Eye
+                style={{ width: "2rem", height: "2rem" }}
+                className="text-purple-600 mx-auto mb-2"
+              />
               <h3 className="text-2xl font-bold">{stats.totalViews}</h3>
               <p className="text-gray-600">Total Views</p>
             </div>
           </div>
           <div className="card">
             <div className="card-body text-center">
-              <TrendingUp style={{ width: "2rem", height: "2rem" }} className="text-red-600 mx-auto mb-2" />
+              <TrendingUp
+                style={{ width: "2rem", height: "2rem" }}
+                className="text-red-600 mx-auto mb-2"
+              />
               <h3 className="text-2xl font-bold">{stats.totalLikes}</h3>
               <p className="text-gray-600">Total Likes</p>
             </div>
@@ -135,7 +160,14 @@ const AdminDashboard = () => {
                     : "border-transparent text-gray-600 hover:text-gray-900"
                 }`}
               >
-                <BarChart3 style={{ width: "1rem", height: "1rem", display: "inline", marginRight: "0.5rem" }} />
+                <BarChart3
+                  style={{
+                    width: "1rem",
+                    height: "1rem",
+                    display: "inline",
+                    marginRight: "0.5rem",
+                  }}
+                />
                 Overview
               </button>
               <button
@@ -146,7 +178,14 @@ const AdminDashboard = () => {
                     : "border-transparent text-gray-600 hover:text-gray-900"
                 }`}
               >
-                <FileText style={{ width: "1rem", height: "1rem", display: "inline", marginRight: "0.5rem" }} />
+                <FileText
+                  style={{
+                    width: "1rem",
+                    height: "1rem",
+                    display: "inline",
+                    marginRight: "0.5rem",
+                  }}
+                />
                 All Blogs
               </button>
               <button
@@ -157,7 +196,14 @@ const AdminDashboard = () => {
                     : "border-transparent text-gray-600 hover:text-gray-900"
                 }`}
               >
-                <Users style={{ width: "1rem", height: "1rem", display: "inline", marginRight: "0.5rem" }} />
+                <Users
+                  style={{
+                    width: "1rem",
+                    height: "1rem",
+                    display: "inline",
+                    marginRight: "0.5rem",
+                  }}
+                />
                 Users
               </button>
             </div>
@@ -177,7 +223,8 @@ const AdminDashboard = () => {
                         <div>
                           <h3 className="font-semibold">{blog.title}</h3>
                           <p className="text-sm text-gray-600">
-                            by {blog.author.firstName} {blog.author.lastName} • {formatDate(blog.createdAt)}
+                            by {blog.author.firstName} {blog.author.lastName} •{" "}
+                            {formatDate(blog.createdAt)}
                           </p>
                         </div>
                         <div className="flex items-center space-x-4 text-sm text-gray-500">
@@ -207,7 +254,9 @@ const AdminDashboard = () => {
                       >
                         <div className="flex-1">
                           <div className="flex items-center space-x-2 mb-1">
-                            <span className="badge badge-primary">{blog.category}</span>
+                            <span className="badge badge-primary">
+                              {blog.category}
+                            </span>
                             <span className="text-sm text-gray-500">
                               <Calendar
                                 style={{
@@ -253,7 +302,7 @@ const AdminDashboard = () => {
               <div>
                 <h2 className="text-xl font-semibold mb-6">All Users</h2>
                 {stats.users && stats.users.length > 0 ? (
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {stats.users.map((user) => (
                       <div
                         key={user._id}
@@ -264,12 +313,34 @@ const AdminDashboard = () => {
                             {user.firstName} {user.lastName}
                           </h3>
                           <p className="text-sm text-gray-600">{user.email}</p>
-                          <p className="text-xs text-gray-500">Joined {formatDate(user.createdAt)}</p>
+                          <p className="text-xs text-gray-500">
+                            Joined {formatDate(user.createdAt)}
+                          </p>
                         </div>
-                        <div className="text-right">
-                          <span className={`badge ${user.role === "admin" ? "badge-primary" : "badge-secondary"}`}>
-                            {user.role}
-                          </span>
+                        <div className="flex items-center space-x-4">
+                          <div className="text-right">
+                            <span
+                              className={`badge ${
+                                user.role === "admin"
+                                  ? "badge-primary"
+                                  : "badge-secondary"
+                              }`}
+                            >
+                              {user.role}
+                            </span>
+                          </div>
+                          <div className="user-actions">
+                            <button
+                              onClick={() =>
+                                toggleUserStatus(user._id, user.isActive)
+                              }
+                              className={`action-btn ${
+                                user.isActive ? "deactivate" : "activate"
+                              }`}
+                            >
+                              {user.isActive ? "Deactivate" : "Activate"}
+                            </button>
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -285,7 +356,7 @@ const AdminDashboard = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default AdminDashboard

@@ -51,7 +51,7 @@ const Login = () => {
         window.location.reload()
       }, 1500)
     } catch (error) {
-      setError(error.response?.data?.message || "Login failed")
+      setError(error.response?.data?.error || "Login failed")
     } finally {
       setLoading(false)
     }
