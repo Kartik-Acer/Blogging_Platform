@@ -3,7 +3,7 @@ import axios from "axios";
 const API = axios.create({
   baseURL: "https://blogging-platform-backend-lqai.onrender.com/api",
 });
-//https://blogging-platform-backend-lqai.onrender.com
+//https://blogging-platform-backend-lqai.onrender.com/api
 //http://localhost:5000/api
 //Interceptor to add token to every request
 API.interceptors.request.use(

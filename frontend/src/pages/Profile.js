@@ -46,14 +46,11 @@ const Profile = () => {
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Please log in to view your profile</h2>
-          <Link to="/login" className="btn btn-primary">
-            Login
-          </Link>
+        <div className="flex justify-center py-8">
+          <div className="loading-spinner"></div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
