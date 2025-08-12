@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://blogging-platform-backend-lqai.onrender.com/api",
+  baseURL: "http://localhost:5000/api",
 });
 //https://blogging-platform-backend-lqai.onrender.com
 //http://localhost:5000/api
@@ -24,7 +24,7 @@ export const login = (data) => API.post("/login", data)
 
 export const getProfile = () => API.get("/auth/me")
 
-export const getblog = (params,data) => API.get(`/blogs?${params}`,data)
+export const getblog = (params, data) => API.get(`/blogs?${params}`, data)
 
 export const getUsersblog = (data) => API.get("/users/blogs", data)
 

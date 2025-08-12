@@ -5,6 +5,7 @@ import { useState } from "react"
 import { useQuery, useMutation, useQueryClient } from "react-query"
 import { getAdminblog, getAdminusers, deleteblogByAmin } from "../services/api"
 import { Users, FileText, Trash2, Eye, Calendar, BarChart3, TrendingUp } from "lucide-react"
+import Swal from "sweetalert2";
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("overview")
@@ -46,10 +47,25 @@ const AdminDashboard = () => {
   )
 
   const handleDeleteBlog = (blogId) => {
-    if (window.confirm("Are you sure you want to delete this blog?")) {
-      deleteBlogMutation.mutate(blogId)
-    }
-  }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteBlogMutation.mutate(blogId);
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString("en-US", {

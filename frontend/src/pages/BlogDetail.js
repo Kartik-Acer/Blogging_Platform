@@ -6,6 +6,7 @@ import { useParams, Link } from "react-router-dom"
 import { useQuery, useMutation, useQueryClient } from "react-query"
 import { getBlogDetail, likeblog, commentblog, deleteblog } from "../services/api"
 import { Calendar, User, Heart, MessageCircle, Eye, Edit, Trash2, Send } from "lucide-react"
+import Swal from "sweetalert2";
 
 const BlogDetail = () => {
   const { id } = useParams()
@@ -85,20 +86,38 @@ const BlogDetail = () => {
   }
 
   const handleComment = (e) => {
-    e.preventDefault()
-    if(token == null){
-      window.confirm("please log in to comment")
+    e.preventDefault();
+    if (token == null) {
+      Swal.fire({
+        title: "Want to share your opinion",
+        text: "Please Log in",
+        icon: "warning",
+      });
+    } else if (comment.trim()) {
+      commentMutation.mutate(comment);
     }
-     else if (comment.trim()) {
-      commentMutation.mutate(comment)
-    }
-  }
+  };
 
   const handleDelete = () => {
-    if (window.confirm("Are you sure you want to delete this blog?")) {
-      deleteMutation.mutate()
-    }
-  }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteMutation.mutate();
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString("en-US", {

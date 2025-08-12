@@ -21,9 +21,8 @@ const Home = () => {
 
     if (search) params.append("search", search)
     if (category) params.append("category", category)
-
     //const response = await axios.get(`/api/blogs?${params}`)
-    const response = await getblog();
+    const response = await getblog(params);
     return response.data
   }
 
