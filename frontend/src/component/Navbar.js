@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { Menu, X, PenTool, Home, FileText, BarChart3, User, LogOut } from "lucide-react"
+import { Menu, X, PenTool, Home, FileText, BarChart3, User, LogOut, LogIn, UserPlus } from "lucide-react"
 import "../styles/Navbar.css"
 
 const Navbar = () => {
@@ -109,8 +109,9 @@ const Navbar = () => {
               </div>
             ) : (
               <div className="flex items-center space-x-4">
-                <Link to="/login" className="text-gray-700 hover:text-blue-600 transition-colors">
-                  Login
+                <Link to="/login" className="text-gray-700 flex items-center hover:text-blue-600 transition-colors">
+                  <LogIn style={{ width: "1rem", height: "1rem" , marginRight : "0.5rem" }} /> 
+                  <span>Login</span>
                 </Link>
                 <Link to="/register" className="btn btn-SignUp">
                   Sign Up
@@ -192,14 +193,16 @@ const Navbar = () => {
                     className="block px-3 py-2 text-gray-700 hover:text-blue-600"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Login
+                  <LogIn className="h-4 w-4" style={{  marginRight : "0.5rem" }} /> 
+                  <span>Login</span>
                   </Link>
                   <Link
                     to="/register"
-                    className="block px-3 py-2 text-gray-700 hover:text-blue-600"
+                    className="block px-3 py-2  text-gray-700 hover:text-blue-600 "
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Sign Up
+                    <UserPlus className="h-4 w-4"  style={{  marginRight : "0.5rem" }} />
+                    <span>Sign Up</span>
                   </Link>
                 </>
               )}

@@ -68,7 +68,10 @@ const Home = () => {
         <div className="hero-content">
           <div className="text-center">
             <h1 className="hero-title">Welcome to BlogHub</h1>
-            <p className="hero-subtitle">Discover amazing stories, share your thoughts, and connect with writers</p>
+            <p className="hero-subtitle">
+              Discover amazing stories, share your thoughts, and connect with
+              writers
+            </p>
 
             {/* Search Bar */}
             <form onSubmit={handleSearch} className="hero-search">
@@ -116,15 +119,36 @@ const Home = () => {
           <div className="blog-grid">
             {[...Array(6)].map((_, index) => (
               <div key={index} className="card animate-pulse">
-                <div className="loading-skeleton" style={{ height: "12rem" }}></div>
+                <div
+                  className="loading-skeleton"
+                  style={{ height: "12rem" }}
+                ></div>
                 <div className="card-body">
-                  <div className="loading-skeleton mb-2" style={{ height: "1rem" }}></div>
-                  <div className="loading-skeleton mb-4" style={{ height: "1rem", width: "75%" }}></div>
-                  <div className="loading-skeleton mb-2" style={{ height: "0.75rem" }}></div>
-                  <div className="loading-skeleton mb-4" style={{ height: "0.75rem", width: "50%" }}></div>
+                  <div
+                    className="loading-skeleton mb-2"
+                    style={{ height: "1rem" }}
+                  ></div>
+                  <div
+                    className="loading-skeleton mb-4"
+                    style={{ height: "1rem", width: "75%" }}
+                  ></div>
+                  <div
+                    className="loading-skeleton mb-2"
+                    style={{ height: "0.75rem" }}
+                  ></div>
+                  <div
+                    className="loading-skeleton mb-4"
+                    style={{ height: "0.75rem", width: "50%" }}
+                  ></div>
                   <div className="flex justify-between items-center">
-                    <div className="loading-skeleton" style={{ height: "0.75rem", width: "25%" }}></div>
-                    <div className="loading-skeleton" style={{ height: "0.75rem", width: "25%" }}></div>
+                    <div
+                      className="loading-skeleton"
+                      style={{ height: "0.75rem", width: "25%" }}
+                    ></div>
+                    <div
+                      className="loading-skeleton"
+                      style={{ height: "0.75rem", width: "25%" }}
+                    ></div>
                   </div>
                 </div>
               </div>
@@ -133,22 +157,38 @@ const Home = () => {
         ) : data?.blogs?.length === 0 ? (
           <div className="text-center py-12">
             <h3 className="text-2xl font-semibold mb-2">No blogs found</h3>
-            <p className="text-gray-600">Try adjusting your search criteria or check back later.</p>
+            <p className="text-gray-600">
+              Try adjusting your search criteria or check back later.
+            </p>
           </div>
         ) : (
           <>
             <div className="blog-grid">
               {data?.blogs?.map((blog) => (
                 <article key={blog._id} className="blog-card">
-                  {blog.featuredImage && (
-                    <img src={blog.featuredImage || "/placeholder.svg"} alt={blog.title} className="blog-card-image" />
-                  )}
+                  <Link to={`/blog/${blog._id}`} className="">
+                    {blog.featuredImage && (
+                      <img
+                        src={blog.featuredImage || "/placeholder.svg"}
+                        alt={blog.title}
+                        className="blog-card-image"
+                      />
+                    )}
+                  </Link>
 
                   <div className="blog-card-content">
                     <div className="blog-card-header">
-                      <span className="badge badge-primary">{blog.category}</span>
+                      <span className="badge badge-primary">
+                        {blog.category}
+                      </span>
                       <span className="blog-card-stat">
-                        <Calendar style={{ width: "1rem", height: "1rem", marginRight: "0.25rem" }} />
+                        <Calendar
+                          style={{
+                            width: "1rem",
+                            height: "1rem",
+                            marginRight: "0.25rem",
+                          }}
+                        />
                         {formatDate(blog.createdAt)}
                       </span>
                     </div>
@@ -160,12 +200,19 @@ const Home = () => {
                     </h2>
 
                     <p className="blog-card-excerpt line-clamp-3">
-                      {blog.excerpt || stripHtml(blog.content).substring(0, 150) + "..."}
+                      {blog.excerpt ||
+                        stripHtml(blog.content).substring(0, 150) + "..."}
                     </p>
 
                     <div className="blog-card-footer">
                       <div className="blog-card-author">
-                        <User style={{ width: "1rem", height: "1rem", marginRight: "0.25rem" }} />
+                        <User
+                          style={{
+                            width: "1rem",
+                            height: "1rem",
+                            marginRight: "0.25rem",
+                          }}
+                        />
                         <span className="text-sm text-gray-600">
                           {blog.author.firstName} {blog.author.lastName}
                         </span>
@@ -173,15 +220,33 @@ const Home = () => {
 
                       <div className="blog-card-stats">
                         <span className="blog-card-stat">
-                          <Heart style={{ width: "1rem", height: "1rem", marginRight: "0.25rem" }} />
+                          <Heart
+                            style={{
+                              width: "1rem",
+                              height: "1rem",
+                              marginRight: "0.25rem",
+                            }}
+                          />
                           {blog.likes.length}
                         </span>
                         <span className="blog-card-stat">
-                          <MessageCircle style={{ width: "1rem", height: "1rem", marginRight: "0.25rem" }} />
+                          <MessageCircle
+                            style={{
+                              width: "1rem",
+                              height: "1rem",
+                              marginRight: "0.25rem",
+                            }}
+                          />
                           {blog.comments.length}
                         </span>
                         <span className="blog-card-stat">
-                          <Eye style={{ width: "1rem", height: "1rem", marginRight: "0.25rem" }} />
+                          <Eye
+                            style={{
+                              width: "1rem",
+                              height: "1rem",
+                              marginRight: "0.25rem",
+                            }}
+                          />
                           {blog.views}
                         </span>
                       </div>
@@ -196,7 +261,9 @@ const Home = () => {
               <div className="pagination">
                 <div className="flex space-x-2">
                   <button
-                    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.max(prev - 1, 1))
+                    }
                     disabled={currentPage === 1}
                     className="pagination-btn"
                   >
@@ -208,7 +275,9 @@ const Home = () => {
                       key={index + 1}
                       onClick={() => setCurrentPage(index + 1)}
                       className={`pagination-btn ${
-                        currentPage === index + 1 ? "pagination-btn pagination-btn-active" : ""
+                        currentPage === index + 1
+                          ? "pagination-btn pagination-btn-active"
+                          : ""
                       }`}
                     >
                       {index + 1}
@@ -216,7 +285,11 @@ const Home = () => {
                   ))}
 
                   <button
-                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, data.pagination.pages))}
+                    onClick={() =>
+                      setCurrentPage((prev) =>
+                        Math.min(prev + 1, data.pagination.pages)
+                      )
+                    }
                     disabled={currentPage === data.pagination.pages}
                     className="pagination-btn"
                   >
@@ -229,7 +302,7 @@ const Home = () => {
         )}
       </div>
     </div>
-  )
+  );
 }
 
 export default Home
