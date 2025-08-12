@@ -16,7 +16,8 @@ const upload = multer({
 // Get all blogs with pagination and search
 router.get("/blogs", async (req, res) => {
   try {
-  
+    
+    console.log(req.query.category);
     const page = Number.parseInt(req.query.page) || 1
     const limit = Number.parseInt(req.query.limit) || 10
     const skip = (page - 1) * limit
@@ -40,6 +41,8 @@ router.get("/blogs", async (req, res) => {
     if (tag) {
       query.tags = { $in: [new RegExp(tag, "i")] }
     }
+     
+    console.log(query);
 
     const blogs = await Blog.find(query)
       .populate("author", "username firstName lastName avatar")

@@ -28,7 +28,7 @@ exports.login = async (req, res) => {
   //const isMatch = await bcrypt.compare(password, user.password); //Compare password
   //if (!isMatch) return res.status(400).json({ error: "Invalid Credentials" });
 
-  if (!user.isActive) return res.status(400).json({ error: "Access denied" });
+  if (!user.isActive) return res.status(400).json({ error: "Access denied! Please contact your admin" });
 
   const token = jwt.sign(
     { userid: user._id, role: user.role },

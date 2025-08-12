@@ -103,14 +103,20 @@ router.put("/users/:id/role", adminAuth, async (req, res) => {
 })
 
 // Deactivate user (admin only)
-router.put("/users/:id/deactivate", adminAuth, async (req, res) => {
+router.put("/admin/users/:id/deactivate", adminAuth, async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, { isActive: false }, { new: true }).select("-password")
+
+    //console.log("toggle called", req.params.id)
+    //const user = false
+    const user = await User.findByIdAndUpdate(req.params.id)
 
     if (!user) {
       return res.status(404).json({ message: "User not found" })
     }
-
+     
+    user.isActive = !user.isActive;
+    await user.save();
+    
     res.json({
       message: "User deactivated successfully",
       user,
