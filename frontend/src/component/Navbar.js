@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { Menu, X, PenTool, Home, FileText, BarChart3, User, LogOut, LogIn, UserPlus } from "lucide-react"
+import { Menu, X, PenTool, Home, FileText, BarChart3, User, LogOut, LogIn, UserPlus, Key } from "lucide-react"
 import "../styles/Navbar.css"
 
 const Navbar = () => {
@@ -89,6 +89,11 @@ const Navbar = () => {
                   <Link to="/profile" className="dropdown-item">
                     <User style={{ width: "1rem", height: "1rem" }} />
                     <span>Profile</span>
+                  </Link>
+
+                  <Link to="/change-password" className="dropdown-item">
+                    <Key style={{ width: "1rem", height: "1rem" }} />
+                    <span>Change Password</span>
                   </Link>
 
                   <button

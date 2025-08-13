@@ -11,7 +11,9 @@ import EditBlog from "./pages/EditBlog"
 import BlogDetail from "./pages/BlogDetail"
 import AdminDashboard from "./pages/AdminDashboard"
 import EditProfile from "./pages/EditProfile"
+import ChangePassord from "./pages/ChangePassword"
 import './App.css';
+import { Import } from "lucide-react"
 
 
 const queryClient = new QueryClient({
@@ -40,6 +42,7 @@ function App() {
               <Route path="/create-blog" element={<CreateBlog />} />
               <Route path="/edit-blog/:id" element={<EditBlog />} />
               <Route path="/adminDashboard" element={<AdminDashboard/>}/>
+              <Route path="/change-password" element={<ChangePassord/>}/>
             </Routes>
           </main>
           <Footer />
