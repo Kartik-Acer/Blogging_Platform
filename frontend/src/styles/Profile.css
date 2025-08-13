@@ -258,3 +258,11 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+
+@media (min-width: 768px) {
+  .margin-left > * + * {
+  margin-left: 1rem;
+}
+
+}

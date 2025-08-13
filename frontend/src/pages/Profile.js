@@ -59,7 +59,7 @@ const Profile = () => {
         {/* Profile Header */}
         <div className="card mb-8">
           <div className="card-body">
-            <div className="flex items-start justify-between">
+            <div className="flex items-start justify-evenly flex-wrap align-content">
               <div className="flex items-start space-x-6">
                 <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center">
                   {user.avatar && (
@@ -72,12 +72,12 @@ const Profile = () => {
                   )}
                   {/* {<User style={{ width: "5rem", height: "3rem" }} className="text-blue-600" />} */}
                 </div>
-                
-                <div style={{paddingLeft:"10px"}}>
+              </div>
+               <div style={{marginLeft:"30px"}}>
                   <h1 className="text-3xl font-bold mb-2">
                     {user.firstName} {user.lastName}
                   </h1>
-                  <div className="flex items-center space-x-4 text-gray-600 mb-4">
+                  <div className="flex items-center margin-left  flex-wrap text-gray-600 mb-4">
                     <div className="flex items-center">
                       <Mail style={{ width: "1rem", height: "1rem", marginRight: "0.5rem" }} />
                       <span>{user.email}</span>
@@ -89,7 +89,6 @@ const Profile = () => {
                   </div>
                   {user.bio && <p className="text-gray-700 max-w-2xl">{user.bio}</p>}
                 </div>
-              </div>
               <button className="btn btn-secondary">
                 <Link to="/EditProfile" className="btn btn-secondary">
                  <Edit style={{ width: "1rem", height: "1rem", marginRight: "0.5rem" }} />
