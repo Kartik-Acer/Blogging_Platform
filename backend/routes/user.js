@@ -5,6 +5,7 @@ const Blog = require("../models/blog")
 const { auth } = require("../middleware/auth")
 const cloudinary = require("../config/cloudinary")
 const multer = require("multer")
+const bcrypt = require("bcryptjs");
 
 const router = express.Router()
 
@@ -24,6 +25,31 @@ router.get("/profile", auth, async (req, res) => {
     res.json(user)
   } catch (error) {
     console.error(error)
+    res.status(500).json({ message: "Server error" })
+  }
+})
+
+router.put("/user/updatePass", auth, async (req, res) =>{
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" })
+    }
+    const { oldPassword, newPassword} = req.body;
+
+
+    const isMatch = oldPassword === user.password ? true : false;
+
+    if (!isMatch) return res.status(400).json({ message: "Old Password not valid" });
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    await User.findByIdAndUpdate(user._id, { password: hashedPassword });
+
+    res.status(200).json({ message: "Success!" });
+
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Server error" })
   }
 })
