@@ -3,6 +3,10 @@ import axios from "axios";
 const API = axios.create({
   baseURL: "https://blogging-platform-backend-lqai.onrender.com/api",
 });
+
+// const API = axios.create({
+//   baseURL: "http://localhost:5000/api",
+// });
 //https://blogging-platform-backend-lqai.onrender.com/api
 //http://localhost:5000/api
 //Interceptor to add token to every request
@@ -50,4 +54,5 @@ export const updateProfile = (data) => API.put("/user/profile", data);
 
 export const toggleUsers = (id, data) => API.put(`/admin/users/${id}/deactivate`, data);
 
+export const updatePassword = (data) => API.put("/user/updatePass", data);
 
