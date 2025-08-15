@@ -1,6 +1,17 @@
 import { PenTool, Github, Twitter, Linkedin } from "lucide-react"
+import { useState, useEffect } from "react"
 import "../styles/Footer.css"
 const Footer = () => {
+
+   const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+   useEffect(() => {
+       const token = localStorage.getItem("token")
+       if (token) {
+         setIsAuthenticated(true)
+       }
+     }, [])
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container py-12">
@@ -38,17 +49,13 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/create-blog" className="text-gray-400 hover:text-white transition-colors">
+                <a href={isAuthenticated ? "/create-blog" : "/login"} className="text-gray-400 hover:text-white transition-colors">
                   Write Blog
-                </a>
-              </li>
-              <li>
-                <a href="/profile" className="text-gray-400 hover:text-white transition-colors">
-                  Profile
                 </a>
               </li>
             </ul>
           </div>
+
 
           {/* Categories */}
           <div>

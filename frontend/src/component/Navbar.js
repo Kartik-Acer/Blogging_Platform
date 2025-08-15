@@ -183,9 +183,17 @@ const Navbar = () => {
                     <span>Profile</span>
                   </Link>
 
+                  <Link to="/change-password"
+                    className="flex items-center space-x-2  px-3 py-2 text-gray-700 hover:text-blue-600"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <Key className="h-4 w-4" />
+                    <span>Change Password</span>
+                  </Link>
+
                   <button
                     onClick={handleLogout}
-                    className="flex items-center space-x-2 w-full px-3 py-2 text-left text-gray-700 hover:text-blue-600"
+                    className="flex items-center space-x-2 text-base px-3 py-2 text-gray-700 hover:text-blue-600"
                   >
                     <LogOut className="h-4 w-4" />
                     <span>Logout</span>
