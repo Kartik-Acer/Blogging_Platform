@@ -37,8 +37,7 @@ router.put("/user/updatePass", auth, async (req, res) =>{
     }
     const { oldPassword, newPassword} = req.body;
 
-
-    const isMatch = oldPassword === user.password ? true : false;
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
 
     if (!isMatch) return res.status(400).json({ message: "Old Password not valid" });
 
