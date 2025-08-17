@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import { QueryClient, QueryClientProvider } from "react-query"
 import Navbar from "./component/Navbar"
 import Footer from "./component/Footer"
@@ -26,6 +26,7 @@ const queryClient = new QueryClient({
 })
 
 function App() {
+  const token = localStorage.getItem("token");
   return (
    <QueryClientProvider client={queryClient}>
       <Router>
@@ -36,13 +37,13 @@ function App() {
               <Route path="/" element={<Home/>}/>
               <Route path="/register" element={<Register/>}/>
               <Route path="/login" element={<Login/>}/>
-              <Route path="/profile" element={<Profile/>}/>
-              <Route path="/EditProfile" element={<EditProfile/>}/>
+              <Route path="/profile" element={ token ? <Profile/> : <Navigate to="/login" replace/>}/>
+              <Route path="/EditProfile" element={token ? <EditProfile/> : <Navigate to="/login" replace/>}/>
               <Route path="/blog/:id" element={<BlogDetail />} />
-              <Route path="/create-blog" element={<CreateBlog />} />
-              <Route path="/edit-blog/:id" element={<EditBlog />} />
-              <Route path="/adminDashboard" element={<AdminDashboard/>}/>
-              <Route path="/change-password" element={<ChangePassord/>}/>
+              <Route path="/create-blog" element={token ? <CreateBlog /> : <Navigate to="/login" replace/>} />
+              <Route path="/edit-blog/:id" element={token ? <EditBlog /> : <Navigate to="/login" replace/>} />
+              <Route path="/adminDashboard" element={token ? <AdminDashboard/> : <Navigate to="/login" replace/>}/>
+              <Route path="/change-password" element={token ? <ChangePassord/> : <Navigate to="/login" replace/>}/>
             </Routes>
           </main>
           <Footer />
