@@ -150,8 +150,7 @@ const Navbar = () => {
                 <span>Home</span>
               </Link>
 
-              <Link
-                to="/create-blog"
+              <Link to={isAuthenticated ? "/create-blog" : "/login"}
                 className="flex items-center space-x-2 px-3 py-2 text-gray-700 hover:text-blue-600"
                 onClick={() => setIsMenuOpen(false)}
               >
